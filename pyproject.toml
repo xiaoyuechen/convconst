@@ -1,0 +1,18 @@
+[tool.poetry]
+name = "convconst"
+version = "0.1.0"
+description = "Extract constants from convolutional neural networks"
+authors = ["Xiaoyue Chen <xchen@vvvu.org>"]
+readme = "README.md"
+license = "GPL-3.0-or-later"
+
+[tool.poetry.dependencies]
+python = "^3.11"
+onnx = "^1.15.0"
+
+[tool.poetry.scripts]
+convconst = "convconst.convconst:main"
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
