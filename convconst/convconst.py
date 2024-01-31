@@ -38,3 +38,7 @@ def main():
     for w in weight:
         file = dest / ("x".join(str(d) for d in w.shape) + ".npy")
         np.save(file, w)
+
+
+if __name__ == "__main__":
+    main()
