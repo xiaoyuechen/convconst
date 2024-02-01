@@ -7,7 +7,6 @@ from pathlib import Path
 
 def parse():
     parser = argparse.ArgumentParser(
-        prog="convconst",
         description="Extract constants from convolutional neural networks.")
     parser.add_argument("model", help="the onnx model file")
     parser.add_argument("dest", help="destination directory")
@@ -15,8 +14,12 @@ def parse():
 
 
 def extract_conv_weights(model):
-    input = [node.input[1]
-             for node in model.graph.node if node.op_type == "Conv"]
+    input_conv = [node.input[1]
+                  for node in model.graph.node if node.op_type == "Conv"]
+    input_q_linear_conv = [node.input[3]
+                  for node in model.graph.node if node.op_type == "QLinearConv"]
+
+    input = input_conv + input_q_linear_conv
 
     conv_initializer = [
         init for init in model.graph.initializer if init.name in input]
