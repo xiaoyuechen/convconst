@@ -1,13 +1,9 @@
 {
   description = "Extract constants from convolutional neural networks";
 
-  inputs = {
-    flake-utils.url = "github:numtide/flake-utils";
-    nixpkgs.url = "github:NixOS/nixpkgs/nixos-unstable";
-    poetry2nix = {
-      url = "github:nix-community/poetry2nix";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
+  inputs.poetry2nix = {
+    url = "github:nix-community/poetry2nix";
+    inputs.nixpkgs.follows = "nixpkgs";
   };
 
   outputs = { self, nixpkgs, flake-utils, poetry2nix }:
@@ -21,6 +17,7 @@
             projectDir = self;
             preferWheels = true;
           };
+
           default = self.packages.${system}.convconst;
         };
 

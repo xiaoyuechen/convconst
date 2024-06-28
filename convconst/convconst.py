@@ -34,7 +34,7 @@ def extract_conv_weights(model):
 
 def main():
     args = parse()
-    model = onnx.load(args.model)
+    model = onnx.load(Path(args.model))
     weight = extract_conv_weights(model)
     dest = Path(args.dest)
     os.makedirs(dest, exist_ok=True)
